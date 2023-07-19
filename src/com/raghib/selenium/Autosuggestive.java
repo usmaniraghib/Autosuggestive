@@ -6,6 +6,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 // Enter the letters BENG
 // Verify if Airport option is displayed in the suggestive box
 
@@ -17,7 +19,8 @@ public class Autosuggestive {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
-		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\Driver\\chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\Driver\\chromedriver.exe");
+		WebDriverManager.chromedriver().setup();
 		WebDriver driver = new ChromeDriver();
 
 		driver.get("https://ksrtc.in/oprs-web/guest/home.do?h=1");
