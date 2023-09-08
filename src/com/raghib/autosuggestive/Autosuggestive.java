@@ -1,6 +1,9 @@
 package com.raghib.autosuggestive;
 
 /**
+ * Reference:-
+ * https://www.youtube.com/watch?v=KrCgJ3KLBkc
+ * 
 Enter the letters BENG
 Verify if Airport option is displayed in the suggestive box
 
@@ -30,7 +33,8 @@ public class Autosuggestive extends BaseClass {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		driver.manage().window().maximize();
 		driver.get(url);
-
+		
+		//First time providing the value to the field.
 		driver.findElement(By.xpath("//input[@id='fromPlaceName']")).sendKeys("BENG");
 		Thread.sleep(2000);		
 
@@ -39,7 +43,7 @@ public class Autosuggestive extends BaseClass {
 
 		String script = "return document.getElementById(\"fromPlaceName\").value;";
 		String text = (String) js.executeScript(script);
-		System.out.println(text);
+		System.out.println("Text outside while loop : "+text);
 		
 		int i = 0;
 		while (!text.equalsIgnoreCase("BENGALURU INTERNATION AIRPORT")) {
@@ -47,7 +51,7 @@ public class Autosuggestive extends BaseClass {
 			driver.findElement(By.xpath("//input[@id='fromPlaceName']")).sendKeys(Keys.DOWN);
 
 			text = (String) js.executeScript(script);
-			System.out.println(text);
+			System.out.println("Text inside while loop : "+text);
 			if (i > 10) {
 				break;
 			}
